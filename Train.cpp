@@ -1623,18 +1623,24 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		read1<<endl;
 		read2<<endl;
 	}
+			
 			if (  iteration % param ->G_L_Period == param ->G_L_Period -1)
 			{	
 
+				
+				
 		/*weight distribution check (completed) */
-		int epoch = int(iteration/8000)+1;
+				
+				
+				
+				int epoch = int(iteration/8000)+1;
 				int recordidx = iteration / param ->G_L_Period;
 				fstream read;
 				
 				char str[1024];
 				sprintf(str, "overallweightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
 			 	read.open(str,fstream::app);
-		read <<epoch<<", "<<recordidx;
+				read <<epoch<<", "<<recordidx;
 			 	
 										for (int j = 0; j  < param->nHide; j++) {
 					for (int k = 0; k < param->nInput; k++) {
@@ -1688,91 +1694,91 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		// location3 
 		// -> distribution check
 
-		fstream read1;
-		fstream read2;
-		fstream read3;
-		fstream read4;
-		fstream read5;
-		fstream read6;
-		fstream read7;
-		fstream read8;
+		fstream read11;
+		fstream read22;
+		fstream read33;
+		fstream read44;
+		fstream read55;
+		fstream read66;
+		fstream read77;
+		fstream read88;
 				
-		char str1[1024];
-		sprintf(str1, "location0weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str2[1024];
-		sprintf(str2, "location1weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str3[1024];
-		sprintf(str3, "location2weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str4[1024];
-		sprintf(str4, "location3weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str11[1024];
+		sprintf(str11, "location0weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str22[1024];
+		sprintf(str22, "location1weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str33[1024];
+		sprintf(str33, "location2weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str44[1024];
+		sprintf(str44, "location3weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
 		
-		char str5[1024];
-		sprintf(str1, "location0GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str6[1024];
-		sprintf(str2, "location1GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str7[1024];
-		sprintf(str3, "location2GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str8[1024];
-		sprintf(str4, "location3GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str55[1024];
+		sprintf(str55, "location0GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str66[1024];
+		sprintf(str66, "location1GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str77[1024];
+		sprintf(str77, "location2GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		char str88[1024];
+		sprintf(str88, "location3GpGn_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
 				
-		read1.open(str1,fstream::app);
-		read2.open(str2,fstream::app);
-		read3.open(str3,fstream::app);
-		read4.open(str4,fstream::app);
-		read5.open(str5,fstream::app);
-		read6.open(str6,fstream::app);
-		read7.open(str7,fstream::app);
-		read8.open(str8,fstream::app);
+		read11.open(str11,fstream::app);
+		read22.open(str22,fstream::app);
+		read33.open(str33,fstream::app);
+		read44.open(str44,fstream::app);
+		read55.open(str55,fstream::app);
+		read66.open(str66,fstream::app);
+		read77.open(str77,fstream::app);
+		read88.open(str88,fstream::app);
 				
 		IHsparsity = 0;
 		HOsparsity = 0;
-		read1 <<epoch<<", "<<recordidx;
-		read2 <<epoch<<", "<<recordidx;
-		read3 <<epoch<<", "<<recordidx;
-		read4 <<epoch<<", "<<recordidx;
-		read5 <<epoch<<", "<<recordidx;
-		read6 <<epoch<<", "<<recordidx;
-		read7 <<epoch<<", "<<recordidx;
-		read8 <<epoch<<", "<<recordidx;
+		read11 <<epoch<<", "<<recordidx;
+		read22 <<epoch<<", "<<recordidx;
+		read33 <<epoch<<", "<<recordidx;
+		read44 <<epoch<<", "<<recordidx;
+		read55 <<epoch<<", "<<recordidx;
+		read66 <<epoch<<", "<<recordidx;
+		read77 <<epoch<<", "<<recordidx;
+		read88 <<epoch<<", "<<recordidx;
 		
 		
 							for (int j = 0; j  < param->nHide; j++) {
 					for (int k = 0; k < param->nInput; k++) {
 						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==0){
-						read1<<	", "<<weight1[j][k];
-						read5<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
+						read11<<	", "<<weight1[j][k];
+						read55<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read1<<", "<<1000000;	
-						read5<<", "<<1000000<<", "<<1000000;	
+						read11<<", "<<1000000;	
+						read55<<", "<<1000000<<", "<<1000000;	
 						}
 						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==1){
-						read2<<	", "<<weight1[j][k];
-						read6<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
+						read22<<	", "<<weight1[j][k];
+						read66<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read2<<", "<<1000000;
-						read6<<", "<<1000000<<", "<<1000000;
+						read22<<", "<<1000000;
+						read66<<", "<<1000000<<", "<<1000000;
 						}
 						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==2){
-						read3<<	", "<<weight1[j][k];
-						read7<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
+						read33<<	", "<<weight1[j][k];
+						read77<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read3<<", "<<1000000;		
-						read7<<", "<<1000000<<", "<<1000000;
+						read33<<", "<<1000000;		
+						read77<<", "<<1000000<<", "<<1000000;
 						}
 						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==3){
-						read4<<	", "<<weight1[j][k];
-						read8<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
+						read44<<	", "<<weight1[j][k];
+						read88<<	", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayIH->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read4<<", "<<1000000;
-						read8<<", "<<1000000<<", "<<1000000;
+						read44<<", "<<1000000;
+						read88<<", "<<1000000<<", "<<1000000;
 						}
 						
 					}
@@ -1782,41 +1788,41 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 						for (int j = 0; j < param->nOutput; j++) {
 					for (int k = 0; k < param->nHide; k++) {
 						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==0){
-						read1<<	", "<<weight2[j][k];
-						read5<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
+						read11<<	", "<<weight2[j][k];
+						read55<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read1<<", "<<1000000;
-						read5<<", "<<1000000<<", "<<1000000;
+						read11<<", "<<1000000;
+						read55<<", "<<1000000<<", "<<1000000;
 						}
 						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==1){
-						read2<<	", "<<weight2[j][k];
-						read6<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
+						read22<<	", "<<weight2[j][k];
+						read66<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read2<<", "<<1000000;	
-						read6<<", "<<1000000<<", "<<1000000;
+						read22<<", "<<1000000;	
+						read66<<", "<<1000000<<", "<<1000000;
 						}
 						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==2){
-						read3<<	", "<<weight2[j][k];
-						read7<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
+						read33<<	", "<<weight2[j][k];
+						read77<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read3<<", "<<1000000;
-						read7<<", "<<1000000<<", "<<1000000;
+						read33<<", "<<1000000;
+						read77<<", "<<1000000<<", "<<1000000;
 						
 						}
 						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==3){
-						read4<<	", "<<weight2[j][k];
-						read8<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
+						read44<<	", "<<weight2[j][k];
+						read88<<	", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGp<<", "<<static_cast<RealDevice*>(arrayHO->cell[j][k])->conductanceGn;
 						}
 						else
 						{
-						read4<<", "<<1000000;	
-						read8<<", "<<1000000<<", "<<1000000;
+						read44<<", "<<1000000;	
+						read88<<", "<<1000000<<", "<<1000000;
 						}
 						
 					}
@@ -1825,10 +1831,15 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		
 		
 				
-		read1<<endl;
-		read2<<endl;
-		read3<<endl;
-		read4<<endl;
+		read11<<endl;
+		read22<<endl;
+		read33<<endl;
+		read44<<endl;
+		read55<<endl;
+		read66<<endl;
+		read77<<endl;
+		read88<<endl;
+				
 		
 		///////////////////////////
 		
