@@ -1144,6 +1144,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 				
 			}
 			/* location track */
+						
 			if(param -> LocationTrack){
 				
 				if (  iteration % param ->LocationTrackPeriod == param ->LocationTrackPeriod -1) {
@@ -1153,6 +1154,14 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 				double location1count=0;
 				double location2count=0;
 				double location3count=0;
+					double location0count_skip=0;
+					double location1count_skip=0;
+					double location2count_skip=0;
+					double location3count_skip=0;
+						double location0count_zero=0;
+					double location1count_zero=0;
+					double location2count_zero=0;
+					double location3count_zero=0;
 				double location0weight=0;
 				double location1weight=0;
 				double location2weight=0;
@@ -1161,16 +1170,24 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 					for (int k = 0; k < param->nInput; k++) {
 						 if(static_cast<RealDevice*>(arrayIH->cell[j][k])->location == 0)
 						 {location0weight +=weight1[j][k];
-						location0count++;}
+						location0count++;
+						 location0count_skip= location0count_skip+static_cast<RealDevice*>(arrayIH->cell[j][k])->skipcount;
+						  location0count_zero= location0count_zero+static_cast<RealDevice*>(arrayIH->cell[j][k])->zeropulsecount;}
 						 else if(static_cast<RealDevice*>(arrayIH->cell[j][k])->location == 1)
 							 {location1weight +=weight1[j][k];
-						location1count++;}
+						location1count++;
+							 location1count_skip= location1count_skip+static_cast<RealDevice*>(arrayIH->cell[j][k])->skipcount;
+							 location1count_zero= location1count_zero+static_cast<RealDevice*>(arrayIH->cell[j][k])->zeropulsecount;}
 						else if(static_cast<RealDevice*>(arrayIH->cell[j][k])->location == 2)
 						{location2weight +=weight1[j][k];
-						location2count++;}
+						location2count++;
+						location2count_skip= location2count_skip+static_cast<RealDevice*>(arrayIH->cell[j][k])->skipcount;
+						location2count_zero= location2count_zero+static_cast<RealDevice*>(arrayIH->cell[j][k])->zeropulsecount;}
 						else if(static_cast<RealDevice*>(arrayIH->cell[j][k])->location == 3){
 							 location3weight +=weight1[j][k];
 						location3count++;
+							location3count_skip= location3count_skip+static_cast<RealDevice*>(arrayIH->cell[j][k])->skipcount;
+							location3count_zero= location3count_zero+static_cast<RealDevice*>(arrayIH->cell[j][k])->zeropulsecount;
 						}
 					}
 				}
@@ -1180,17 +1197,25 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 					for (int k = 0; k < param->nHide; k++) {
 						if(static_cast<RealDevice*>(arrayHO->cell[j][k])->location == 0)
 						{location0weight +=weight2[j][k];
-						location0count++;}
+						location0count++;
+						location0count_skip= location0count_skip+static_cast<RealDevice*>(arrayHO->cell[j][k])->skipcount;
+						location0count_zero= location0count_zero+static_cast<RealDevice*>(arrayHO->cell[j][k])->zeropulsecount;}
 						 else if(static_cast<RealDevice*>(arrayHO->cell[j][k])->location == 1)
 						 {location1weight +=weight2[j][k];
-						location1count++;}
+						location1count++;
+						 location1count_skip= location1count_skip+static_cast<RealDevice*>(arrayHO->cell[j][k])->skipcount;
+						 location1count_zero= location1count_zero+static_cast<RealDevice*>(arrayHO->cell[j][k])->zeropulsecount;}
 						else if(static_cast<RealDevice*>(arrayHO->cell[j][k])->location == 2)
 						{location2weight +=weight2[j][k];
-						location2count++;}
+						location2count++;
+						location2count_skip= location2count_skip+static_cast<RealDevice*>(arrayHO->cell[j][k])->skipcount;
+						location2count_zero= location2count_zero+static_cast<RealDevice*>(arrayHO->cell[j][k])->zeropulsecount;}
 						else if(static_cast<RealDevice*>(arrayIH->cell[j][k])->location == 3)
 						{
 						location3weight +=weight2[j][k];
 						location3count++;
+						location3count_skip= location3count_skip+static_cast<RealDevice*>(arrayHO->cell[j][k])->skipcount;
+						location3count_zero= location3count_zero+static_cast<RealDevice*>(arrayHO->cell[j][k])->zeropulsecount;
 						}
 						
 					}
@@ -1202,6 +1227,15 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 			read <<epoch<<", "<<recordidx<<", "<<location0count<<", "<<location1count<<", "<<location2count<<", "<<location3count <<", "<< location0weight/location0count<<", "<<location1weight/location1count<<", " <<location2weight/location2count<<", "<<location3weight/location3count<< endl;	
 			printf("locationcount: %.2f, %.2f, %.2f, %.2f", 	location0count, location1count, location2count, location3count);
 			printf("locationweightmean: %.2f, %.2f, %.2f, %.2f", location0weight/location0count, location1weight/location1count, location2weight/location2count,location3weight/location3count);
+				
+			fstream read_skip;
+			char str_skip[1024];
+			sprintf(str_skip, "skip_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+			read_skip.open(str_skip,fstream::app);
+			read_skip <<epoch<<", "<<recordidx<<", "<<location0count_skip/location0count<<", "<<location1count_skip/location1count<<", "<<location2count_skip/location2count<<", "<<location3count_skip/location3count<<", "<<location0count_zero/location0count<<", "<<location1count_zero/location1count<<", "<<location2count_zero/location2count<<", "<<location3count_zero/location3count<<endl;
+			printf("skipcount: %.2f, %.2f, %.2f, %.2f, zerocount: %.2f, %.2f, %.2f, %.2f ", 	location0count_skip/location0count, location1count_skip/location1count, location2count_skip/location2count, location3count_skip/location3count,location0count_zero/location0count, location1count_zero/location1count, location2count_zero/location2count, location3count_zero/location3count);
+			
+				
 				}	
 			}
 				
