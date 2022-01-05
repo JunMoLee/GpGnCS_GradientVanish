@@ -276,7 +276,7 @@ RealDevice::RealDevice(int x, int y, double p, double n) {
 	nminConductance =0; 
 	nmaxConductance = 10;
 	maxConductance= nmaxConductance; // in case of unwanted situations
-	refConductance = 0;
+	refConductance = 20;
 	
 	
 	// Minimum cell conductance (S)
