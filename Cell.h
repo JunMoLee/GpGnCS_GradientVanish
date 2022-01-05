@@ -225,7 +225,8 @@ public:
 	double loc1noise = 0;
 	double loc2noise = 0;
 	double loc3noise =0;
-
+	double skipcount;
+	double zeropulsecount;
 	
 	RealDevice(int x, int y, double p, double  n);
 	double Read(double voltage);	// Return read current (A)
