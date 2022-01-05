@@ -666,7 +666,7 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 	if (skipcount==0 && numPulse==0) zeropulsecount=1;
 	/* Cycle-to-cycle variation */
 
-	/*
+
 	extern std::mt19937 gen;
 	if (GpGnCell == true) {
 		if (sigmaCtoC && numPulse != 0) {
@@ -678,7 +678,7 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 			conductanceNewGn += (*gaussian_dist3)(gen) * sqrt(abs(numPulse));	// Absolute variation
 		}
 	}
-	*/
+
 	
 	if (conductanceNewGp > pmaxConductance) {
 		conductanceNewGp = pmaxConductance;
