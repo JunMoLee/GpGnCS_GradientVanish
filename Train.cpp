@@ -1857,7 +1857,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 						}
 						
 					}
-						}
+			}
 		
 		
 		
