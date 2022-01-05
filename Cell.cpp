@@ -452,7 +452,10 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 	loc1noise=0;
 	loc2noise=0;
 	loc3noise=0;
+	skipcount=0;
+	zeropulsecount=0;
 
+	
 	int epoch = int( iteration/8000);
 	
 	if (param -> Reference == 0)
@@ -469,6 +472,8 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 	    }
 	
 	bool GpGnCell = true;
+	
+	
 	if (deltaWeightNormalized > 0) {	// LTP weight update
 		
 		
@@ -477,16 +482,16 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 		if(refGp < param->Gth1)
 		{
 		GpGnCell = false;
+		skipcount=1;
 		deltaWeightNormalized = -totalcondrange/ncondrange*deltaWeightNormalized/(maxWeight-minWeight);
 		deltaWeightNormalized = truncate(deltaWeightNormalized, maxNumLevelnLTD);
 		numPulse = deltaWeightNormalized * maxNumLevelnLTD;
-		/*
+			/*
 					if (numPulse > 100000)
 		{
 			numPulse=0;
 		}
 		*/
-		
 		realpulse = - numPulse*1.00/maxNumLevelnLTD*10.0 ;
 
 			numPulse =0;
@@ -513,13 +518,12 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 
 			
 		numPulse = deltaWeightNormalized * maxNumLevelnLTD;
-		/*
+			/*
 					if (numPulse > 100000)
 		{
 			numPulse=0;
 		}
 		*/
-		
 			realpulse = numPulse*1.00/maxNumLevelnLTD*10.0  ;
 			
 		if (numPulse > maxNumLevelnLTD) {
@@ -527,6 +531,7 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 			}
 		if (nonlinearWrite) {
 			if(numPulse !=0){
+			
 		        xPulse = InvNonlinearWeight(conductanceGn, maxNumLevelnLTD, paramAGnd, paramBGnd, nminConductance);
 			conductanceNewGn = NonlinearWeight(xPulse-numPulse, maxNumLevelnLTD, paramAGnd, paramBGnd, nminConductance);
 			}
@@ -574,6 +579,7 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 		posneg=-1;
 		if(param->ReverseUpdate && (iteration % param->newUpdateRate == param->newUpdateRate-1)){
 			if(refGn < param->Gth1){
+						skipcount=1;
 						GpGnCell = true;
 						deltaWeightNormalized = totalcondrange/pcondrange*deltaWeightNormalized/(maxWeight-minWeight);
 						deltaWeightNormalized = truncate(deltaWeightNormalized, maxNumLevelpLTD);
@@ -657,8 +663,9 @@ void RealDevice::Write(int iteration, double deltaWeightNormalized, double weigh
 			
 
 	}
-
+	if (skipcount==0 && numPulse==0) zeropulsecount=1;
 	/* Cycle-to-cycle variation */
+
 	/*
 	extern std::mt19937 gen;
 	if (GpGnCell == true) {
