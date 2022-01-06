@@ -179,7 +179,25 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 				
 			}
 
-
+int error =0;
+			int looptrue=1;
+			int i = rand() % param->numMnistTrainImages;
+			while(looptrue){
+			
+			for (int k=0; k<param->nInput; k++) {
+				if ((double)Input[i][k]>1 ||(double)Input[i][k]<0 || isinf((double)Input[i][k]) || isnan((double)Input[i][k])) error=1;
+				
+			}
+				if (error==1){
+					looptrue=1;
+					error=0;
+				i = rand() % param->numMnistTrainImages;  // Randomize sample
+				}
+				else
+				{
+					looptrue=0;
+				}
+			}
 			int i = rand() % param->numMnistTrainImages;  // Randomize sample
                         //int i = 1;       // use this value for debug
 			// Forward propagation
