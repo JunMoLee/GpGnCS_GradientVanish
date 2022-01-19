@@ -67,15 +67,15 @@ Param::Param() {
 	FullRefresh= 0;
 	Reference = 0;
 	RefPeriod = 100;
-	Record = 1;
+	Record = 0;
 	RecordPeriod = 200;
-	WeightTrack = 1;
+	WeightTrack = 0;
 	WeightTrackPeriod=200;
 	c2cvariation=0;
 	LocationTrack=1;
 	LocationTrackPeriod=200;
-	G_Period = 200;
-	G_L_Period = 8000;
+	G_Period = 2000000000000;
+	G_L_Period = 80000000000000;
 	Gth1 = -1;
 	Gth2 = 9;
 
@@ -162,7 +162,7 @@ alpha1=0.15;
 Reference=0;
 RefPeriod=2;
 newUpdateRate=2;
-Gth1  =plist[select];
+Gth1  =0.8;
 	
 alpha2=alpha1/2;	
 ratio = alpha1/0.15;
