@@ -198,7 +198,7 @@ int error =0;
 					looptrue=0;
 				}
 			}
-			int i = rand() % param->numMnistTrainImages;  // Randomize sample
+
                         //int i = 1;       // use this value for debug
 			// Forward propagation
 			/* First layer (input layer to the hidden layer) */
