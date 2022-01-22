@@ -207,7 +207,7 @@ void Array::WriteCell(int x, int y, double deltaWeight, double weight, double ma
 			//deltaWeight = 2 * deltaWeight; 
 		 double variation =0;
 		if(param->c2cvariation==1){
-		                                double sigmaCtoC = 0.015* 10;   // Sigma of cycle-to-cycle weight update vairation: defined as the percentage of conductance range
+		                                double sigmaCtoC =param->cratio/1000* 10;  // Sigma of cycle-to-cycle weight update vairation: defined as the percentage of conductance range
                         std::normal_distribution<double> *gaussian_dist3;
                                                 gaussian_dist3 = new std::normal_distribution<double>(0, sigmaCtoC);    // Set up mean and stddev for cycle-to-cycle weight update vairation
                                          std::mt19937 gen;
