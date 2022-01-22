@@ -78,7 +78,9 @@ Param::Param() {
 	G_L_Period = 80000000000000;
 	Gth1 = -1;
 	Gth2 = 9;
-
+        const double
+        cratioo=6;
+	cratio=cratioo;
 	/* Hardware parameters */
 	useHardwareInTrainingFF = true;   // Use hardware in the feed forward part of training or not (true: realistic hardware, false: ideal software)
 	useHardwareInTrainingWU = true;   // Use hardware in the weight update part of training or not (true: realistic hardware, false: ideal software)
