@@ -795,6 +795,7 @@ else if ((conductanceNewGp - ( param->Gth1))>=0 && (conductanceNewGn  - (param->
 				if (realpulse > 100000 || realpulse < -100000)
 				{
 					realpulse=0;
+					param->errorcount++;
 				}
 	double m2 = realpulse;
 	if (posneg==1) {pospulsecount += realpulse; pospulsesum += m1;}
