@@ -79,7 +79,7 @@ Param::Param() {
 	Gth1 = -1;
 	Gth2 = 9;
         const double
-        cratioo=6;
+cratioo=6;
 	cratio=cratioo;
 	/* Hardware parameters */
 	useHardwareInTrainingFF = true;   // Use hardware in the feed forward part of training or not (true: realistic hardware, false: ideal software)
